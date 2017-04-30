@@ -1,22 +1,20 @@
-$(document).ready(function(){
-    $('.deleteUser').on('click', deleteUser);
-});
 
-function deleteUser(){
-    var confirmation = confirm("Delete?");
+$('#song').keypress(function (e) {
+    // debugger;
+    
+    var key = e.which;
+    
+ if(key == 13){ 
+     e.preventDefault();
+    var songname = $('#song').val();
+    // alert(songname);
 
-    if(confirmation){
-        $.ajax({
-            type:'DELETE',
-            url:'/users/delete/'+$(this).data('id')
-
-        }).done(function(response){
-            window.location.replace('/');
-        });
-        window.location.replace('/');
-
-    }
-    else{
-        return false;
-    }
+  
+    $.get("songs/", function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+    return false;
+    
 }
+
+});   
